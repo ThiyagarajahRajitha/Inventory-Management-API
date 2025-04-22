@@ -1,0 +1,385 @@
+openapi: 3.0.4
+info:
+  title: Inventory Management API
+  description: An API for managing inventory
+  version: v1
+paths:
+  /api/Auth/login:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LoginModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LoginModel'
+      responses:
+        '200':
+          description: OK
+  /api/Item:
+    get:
+      tags:
+        - Item
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+    post:
+      tags:
+        - Item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateItemDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateItemDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateItemDTO'
+      responses:
+        '200':
+          description: OK
+  '/api/Item/{id}':
+    put:
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemDTO'
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+  /api/Item/filter:
+    get:
+      tags:
+        - Item
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+  /api/Master:
+    get:
+      tags:
+        - Master
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryMaster'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryMaster'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryMaster'
+    post:
+      tags:
+        - Master
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+      responses:
+        '200':
+          description: OK
+  '/api/Master/{id}':
+    put:
+      tags:
+        - Master
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/InventoryMaster'
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - Master
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - Master
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+  /api/Master/filter:
+    get:
+      tags:
+        - Master
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMaster'
+components:
+  schemas:
+    CreateItemDTO:
+      required:
+        - name
+        - unit
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        qty:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        masterId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    InventoryItem:
+      required:
+        - name
+        - unit
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        qty:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        masterId:
+          type: integer
+          format: int32
+        inventoryMaster:
+          $ref: '#/components/schemas/InventoryMaster'
+      additionalProperties: false
+    InventoryMaster:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LoginModel:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateItemDTO:
+      required:
+        - name
+        - unit
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        qty:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        masterId:
+          type: integer
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter JWT token in the format: Bearer {your_token_here}'
+      name: Authorization
+      in: header
+security:
+  - Bearer: [ ]
