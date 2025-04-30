@@ -20,21 +20,21 @@ It uses a SQL Server database, Entity Framework Core, and Swagger for testing an
 
 ### Database Setup
 
-Execute the `Dbscript.sql` file to create the required database schema.
+Execute the `Dbscript.sql` file to create the required database schema
 
 ### Configuration
 
-1. Open `appsettings.json`.
-2. Update the `ConnectionStrings` section with your SQL Server connection string.
+1. Open `appsettings.json`
+2. Update the `ConnectionStrings` section with your SQL Server connection string
 
 
 ## How to Run
 
 ### In Visual Studio
-1. Open the project in **Visual Studio**.
-2. Build and run the application.
-3. The Swagger UI will open automatically in your browser.
-4. Use the Swagger UI to explore and test the API endpoints.
+1. Open the project in **Visual Studio**
+2. Build and run the application
+3. The Swagger UI will open automatically in your browser
+4. Use the Swagger UI to explore and test the API endpoints
 
 ### In Terminal
 1. Open the project directory in the terminal
@@ -48,8 +48,8 @@ Execute the `Dbscript.sql` file to create the required database schema.
 
 ### Authentication
 
-- JWT authentication is used for protected routes.
-- Only the `GetAll` endpoint of the Inventory Master API is secured.
+- JWT authentication is used for protected routes
+- Only the `GetAll` endpoint of the Inventory Master API is secured
 - Use the following credentials to authenticate:
 			Username: *admin* 
 			Password: *password*
