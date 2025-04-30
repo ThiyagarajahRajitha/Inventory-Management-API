@@ -30,10 +30,21 @@ Execute the `Dbscript.sql` file to create the required database schema.
 
 ## How to Run
 
+### In Visual Studio
 1. Open the project in **Visual Studio**.
 2. Build and run the application.
 3. The Swagger UI will open automatically in your browser.
 4. Use the Swagger UI to explore and test the API endpoints.
+
+### In Terminal
+1. Open the project directory in the terminal
+2. Run the following commands
+   ```
+   dotnet restore
+   dotnet build --no-restore
+   dotnet run --project "Inventory Management/Inventory Management.csproj"
+   ```
+3. Open http://localhost:5079/index.html in the browser which will provide you the swagger UI to test
 
 ### Authentication
 
@@ -45,4 +56,4 @@ Execute the `Dbscript.sql` file to create the required database schema.
 - After logging in, copy the token and use it in the Swagger UI's Authorize dialog as Bearer {token}
 
 ## API Definition
-API definition of the project can be viewed in the swagger.yaml file
+API definition of the project can be viewed in the [swagger.yaml](swagger.yaml) file
